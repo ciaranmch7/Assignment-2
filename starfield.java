@@ -1,9 +1,10 @@
 import processing.core.PApplet;
-public class starfield  extends PApplet{
+public class Starfield  extends PApplet{
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		PApplet.main("starfield");
+		PApplet.main("Starfield");
 	}
 	Star stars[];
 	int STARS = 100;
@@ -14,6 +15,7 @@ public class starfield  extends PApplet{
 		}
 
 	public void setup() {
+	 
 	  stars = new Star[STARS];
 	  for ( int i =0; i < STARS; i++) {
 	    stars[i] = new Star( random( width ), random( height ), random( 10 ));
