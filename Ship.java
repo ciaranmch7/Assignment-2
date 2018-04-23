@@ -2,6 +2,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Ship extends PApplet{
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PApplet.main("Ship");
@@ -17,10 +18,12 @@ public class Ship extends PApplet{
     this.img = img;
   }
   
+  
   public void draw() {
     pushMatrix();
     translate ( x, y );
     image( img, -img.width/2, -img.height/2 );
     popMatrix();
+    
   }
 }
