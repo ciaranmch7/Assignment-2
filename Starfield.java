@@ -9,37 +9,31 @@ public class Starfield extends PApplet{
 	Star stars[];
 	int STARS = 100;
 	
-	PImage img;
+	Enemey enemey;
+	 Ship ship;
+	 
 	  
-	  int x;
-	  int y;
-	  int speed;
-	  
-	  public void Ship( int x, int y, PImage img ) {
-		    this.x = x;
-		    this.y = y;
-		    this.img = img;
-		    this.speed = speed;
-		  }
+	 
 	public void settings() {
 		size(1000,1000);
 	}
 	public void setup() {
+		PImage eimg = loadImage("Feature.png");
+		enemey = new Enemey(width + eimg.width/2, height/2, 4, eimg);
 		
-		img = loadImage("player.jpg");
-		frameRate( 25 );
-		  smooth();
-		 
-	}
+		PImage simg = loadImage("player.jpg");
+		ship = new Ship( 100, height/2, 3, simg);
+			frameRate( 25 );
+			  smooth();
+			 
+		}
 
 	public void draw() {
-		
+		background(0);
 		 stars = new Star[STARS];
 		  for ( int i =0; i < STARS; i++) {
 		    stars[i] = new Star( random( width ), random( height ), random( 10 ));
 		  }
-		  
-	  background(0);
 	  strokeWeight( 2 );
 	  for ( int i =0; i < STARS; i++) {
 	    stroke( stars[i].z * 25 );
@@ -48,22 +42,20 @@ public class Starfield extends PApplet{
 	    if (stars[i].x < 0) { 
 	      stars[i] = new Star( width, random( height ), sqrt(random( 100 )));
 	    }
-	      image(img, 0,300,width/8,height/8);
+	  }
+	      
 	      if ( keyPressed == true && key == CODED ) {
 	    	     if ( keyCode == UP ) {
-	    	       up();
+	    	       ship.up();
 	    	     } else if ( keyCode == DOWN ) {
-	    	      down();
+	    	      ship.down();
 	    	     }
 	    	  }  
-	      pushMatrix();
-		    translate ( x, y );
-		    
-		    popMatrix();
+	     enemey.draw();
+	      ship.draw();
+	     
 
-	    
-	  }
-	}
+}
 
 	
 
@@ -75,15 +67,7 @@ public class Starfield extends PApplet{
     this.z = z;
 	  }
 	}
-	void up() {
-	    y -= speed;
-	    if ( y < img.height/2 ) { y = img.height/2; }
-	  }
-	  
-	  void down() {
-	    y += speed;
-	    if ( y > height - img.height/2 ) { y = height - img.height/2; }
-	  }
+	
 
 
 }

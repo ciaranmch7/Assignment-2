@@ -11,10 +11,12 @@ public class Ship extends PApplet{
   
   int x;
   int y;
+  int speed;
   
-  public Ship( int x, int y, int i, PImage img ) {
+  public Ship( int x, int y, int speed, PImage img ) {
     this.x = x;
     this.y = y;
+    this.speed = speed;
     this.img = img;
   }
   
@@ -29,4 +31,13 @@ public class Ship extends PApplet{
     
     
   }
+  void up() {
+	    y -= speed;
+	    if ( y < img.height/2 ) { y = img.height/2; }
+	  }
+	  
+	  void down() {
+	    y += speed;
+	    if ( y > height - img.height/2 ) { y = height - img.height/2; }
+	  }
 }
