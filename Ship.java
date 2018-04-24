@@ -20,10 +20,13 @@ public class Ship extends PApplet{
   
   
   public void draw() {
-    pushMatrix();
-    translate ( x, y );
-    image( img, -img.width/2, -img.height/2 );
-    popMatrix();
+
+	  pushMatrix();
+	    translate ( x, y );
+	    image( img, -img.width/2, -img.height/2 );
+	    popMatrix();
+
+    
     
   }
 }
