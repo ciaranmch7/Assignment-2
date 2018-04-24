@@ -12,7 +12,7 @@ public class Ship extends PApplet{
   int x;
   int y;
   
-  public Ship( int x, int y, PImage img ) {
+  public Ship( int x, int y, int i, PImage img ) {
     this.x = x;
     this.y = y;
     this.img = img;
