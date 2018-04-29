@@ -1,25 +1,24 @@
 import processing.core.PApplet;
 
-public class starfield_draw<starfield> extends PApplet {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		PApplet.main("starfield_draw");
-	}
+public class starfield_draw {
+	PApplet parent;
 	Starfield starfield;
-	public void settings() {
-		size(640,480);
+	
+	void settings() {
+		
+		size(1000,1000);
 	}
-	public void setup() {
-	  
-	  starfield = new Starfield();
+	
+	void setup(PApplet p) {
+	  parent = p;
+	  starfield = new Starfield( 100 );
 	  frameRate( 25 );
 	  smooth();
 	}
 
-	public void draw() {
+	void draw() {
 	  background(0);
 	  starfield.draw();
 	}
-
+	
 }
