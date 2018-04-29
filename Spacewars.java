@@ -29,6 +29,8 @@ public class Spacewars  extends PApplet{
 	  smooth();
 	PImage simg = loadImage( "player.jpg" );
 	  ship = new Ship( 100, 100,3, simg );
+	  PImage eimg = loadImage("Feature.png");
+	  enemey = new Enemey(500,100, 4, eimg);
 	  
 	  
 	  
@@ -45,6 +47,8 @@ public class Spacewars  extends PApplet{
 		     }
 		  } 
 	  
+	  enemey.update();
+	  enemey.draw();
 	  ship.draw();
 	  
 	  
@@ -63,7 +67,8 @@ public class Spacewars  extends PApplet{
 	    }
 	  }
 	}
-	 
+	
+
 	
 	
 
@@ -94,15 +99,46 @@ public class Spacewars  extends PApplet{
 		  }
 		    void up() {
 				y -= speed;
-			    if ( y < img.height/2 ) { y = img.height/10;}
+			    if ( y < img.height/8 ) { y = img.height/8;}
 			  }
 			  
 			  void down() {
 			    y += speed;
-			    if ( y > height - img.height/2 ) { y = height - img.height/2; }
+			    if ( y > height - img.height/8 ) { y = height - img.height/8; }
 			  }
 	
 
+}
+	  class Enemey {
+		  void draw() {
+				 pushMatrix();
+				    translate ( x, y );
+				    image( img, 250,300,width/9,height/9 );
+				    popMatrix();
+				
+			}
+		  
+		  int x, speed, y;
+		  
+		  public void update() {
+		   
+		    x -= speed;
+		    if ( x < - img.width/2 ) {
+		      x = width + img.width/2;
+		      y = (int) ( random( height - img.width ) + img.width/2);
+		    }
+		  }
+		 
+		  
+		  PImage img;
+		  Enemey(int x, int y, int speed, PImage img){
+		    this.x = x;
+		    this.y = y;
+		    this.speed = speed;
+		    this.img = img;
+		    
+		  }
+	 
 }
 	  
 }
