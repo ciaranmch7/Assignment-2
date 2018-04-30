@@ -11,7 +11,7 @@ public class Spacewars  extends PApplet{
 	Enemey enemey;
 
 	 PImage img;
-	 PImage boom;
+	 
 	 
 	 
 	  
@@ -34,19 +34,20 @@ public class Spacewars  extends PApplet{
 	  ship = new Ship( 100, 100,3, simg );
 	  PImage eimg = loadImage("Feature.png");
 	  enemey = new Enemey(500,100, 4, eimg);
-	  boom = loadImage( "boom.jpg" );
+
+	  
 	  
 	  
 	  
 	}
 	
-	int boom_count = 0;
+	
 	
 	public void draw() {
 	  background(0);
-	  enemey.update();
+	  
 	  starfield();
-	  if ( boom_count == 0 ) {
+	 
 	  	  if ( keyPressed == true && key == CODED ) {
 		     if ( keyCode == UP ) {
 		       ship.up();
@@ -54,21 +55,11 @@ public class Spacewars  extends PApplet{
 		       ship.down();
 		     }
 		  } 
-	  	ship.draw();
-	  }
-	 else {
-	    image( boom, ship.getBox().x1, ship.getBox().y1 );
-	    boom_count--;
-	  }
-	 if ( ship.getBox().isOverlap( enemey.getBox())) {
-		    boom_count = 25;
-		  }  
-		 
 	  
-	 
-	  	
-	  	  
+	  
+	  enemey.update();
 	  enemey.draw();
+	  ship.draw();
 	  
 	 
 	  
@@ -119,16 +110,14 @@ public class Spacewars  extends PApplet{
 		  }
 		    void up() {
 				y -= speed;
-			    if ( y < img.height/8 ) { y = img.height/8;}
+			    if ( y < img.height/8) { y = img.height/8;}
 			  }
 			  
 			  void down() {
 			    y += speed;
-			    if ( y > height - img.height/8 ) { y = height - img.height/8; }
+			    if ( y > height - img.height/2 ) { y = height - img.height/2; }
 			  }
-			  public Box getBox() {
-				    return new Box( x - img.width/6, y-img.height/6, x+img.height/6, y+img.height/6);
-				  }
+			 
 			 
 	
 
@@ -162,32 +151,11 @@ public class Spacewars  extends PApplet{
 		    this.img = img;
 		    
 		  }
-		  public Box getBox() {
-			    return new Box( x - img.width/6, y-img.height/6, x+img.height/6, y+img.height/6);
-			  }
+		  
 		  
 	 
 }
-	  public class Box {
-		  int x1, x2;
-		  int y1, y2;
-		  
-		  Box( int x1, int y1, int x2, int y2 ) {
-		    this.x1 = x1;
-		    this.y1 = y1;
-		    
-		    this.x2 = x2;
-		    this.y2 = y2;
-		  }
-		  
-		  boolean isOverlap( Box b ) {
-		    if ((( x1 <= b.x1 && b.x1 <= x2 ) || ( x1 <= b.x2 && b.x2 <= x2 ))
-		     && (( y1 <= b.y1 && b.y1 <= y2 ) || ( y1 <= b.y2 && b.y2 <= y2 ))) {
-		      return true; 
-		    }
-		    return false;
-		  }  
-		}
+	  
 	  
 
 	  
